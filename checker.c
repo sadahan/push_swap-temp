@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 15:06:44 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/02 16:29:34 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				checker(t_pile *pile_a)
 
 	fd = open("inst.txt", O_RDONLY);
 	if (fd == -1)
-		fd = 0; //entree standard
+		fd = 0;
 	while ((ret = read(fd, buff, 29999)))
 		buff[ret] = '\0';
 	close(fd);

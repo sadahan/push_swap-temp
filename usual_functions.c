@@ -6,13 +6,13 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:19:55 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 16:23:33 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/02 16:27:42 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putchar(char c)
+void			ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
@@ -45,7 +45,7 @@ int				ft_strcmp(const char *s1, const char *s2)
 int				ft_atoi(const char *str)
 {
 	int			res;
-	int 		sign;
+	int			sign;
 	int			i;
 
 	res = 0;

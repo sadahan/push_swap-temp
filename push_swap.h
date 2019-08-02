@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:11:18 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 15:05:09 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/02 16:29:23 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void				checker(t_pile *pile_a);
 t_pile				*read_instructions(t_pile *pile_a, char *buff);
 t_pile				*exe_instructions(t_pile *pile_a, char *instruction);
 int					check_if_sorted(t_pile *pile);
-void				print_pile(t_pile *pile); // A supprimer
+void				print_pile(t_pile *pile);
 int					check_false_instruction(char *instruction);
 
 #endif
