@@ -6,50 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:44:29 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 15:06:23 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/02 16:21:44 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int				ft_atoi(const char *str)
-{
-	int			res;
-	int			sign;
-	int			i;
-
-	res = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
-			|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
-		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	return (sign * res);
-}
-
-void			ft_putnbr(int n)
-{
-	long int	nb;
-
-	nb = n;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb > 9)
-		ft_putnbr(nb / 10);
-	ft_putchar(nb % 10 + '0');
-}
 
 void			print_pile(t_pile *pile)
 {
