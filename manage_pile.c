@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   usual_list_functions.c                             :+:      :+:    :+:   */
+/*   manage_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 16:10:06 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/09 15:57:24 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			add_to_bottom(t_pile *pile, int data)
 	new->next = pile->bottom;
 	new->prev = NULL;
 	pile->bottom = new;
+	pile->nb_elem++;
 }
 
 void			add_to_top(t_pile *pile, int data)
@@ -40,6 +41,7 @@ void			add_to_top(t_pile *pile, int data)
 	new->next = NULL;
 	new->prev = pile->top;
 	pile->top = new;
+	pile->nb_elem++;
 }
 
 int				del_top(t_pile *pile)
@@ -48,7 +50,7 @@ int				del_top(t_pile *pile)
 	t_element	*temp;
 
 	data = 0;
-	if (pile->bottom != pile->top)
+	if (pile->nb_elem > 1)
 	{
 		temp = pile->top->prev;
 		data = pile->top->nb;
@@ -56,6 +58,7 @@ int				del_top(t_pile *pile)
 		pile->top->prev = NULL;
 		free(pile->top);
 		pile->top = temp;
+		pile->nb_elem--;
 	}
 	else
 		data = del_pile(pile);
@@ -68,7 +71,7 @@ int				del_bottom(t_pile *pile)
 	t_element	*temp;
 
 	data = 0;
-	if (pile->bottom != pile->top)
+	if (pile->nb_elem > 1)
 	{
 		temp = pile->bottom->next;
 		data = pile->bottom->nb;
@@ -76,6 +79,7 @@ int				del_bottom(t_pile *pile)
 		pile->bottom->next = NULL;
 		free(pile->bottom);
 		pile->bottom = temp;
+		pile->nb_elem--;
 	}
 	else
 		data = del_pile(pile);

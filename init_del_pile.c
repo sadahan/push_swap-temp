@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_del_list.c                                    :+:      :+:    :+:   */
+/*   init_del_pile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:09:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 16:10:01 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/09 16:18:21 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_pile			*init_pile(int data)
 	element->prev = NULL;
 	pile->top = element;
 	pile->bottom = element;
+	pile->nb_elem = 1;
 	return (pile);
 }
 
@@ -34,13 +35,14 @@ int				del_pile(t_pile *pile)
 	int			data;
 
 	data = 0;
-	while (pile->bottom != pile->top)
+	while (pile->nb_elem > 1)
 		del_top(pile);
 	data = pile->top->nb;
 	pile->top = NULL;
 	pile->bottom = NULL;
+	pile->nb_elem = 0;
 	free(pile->top);
 	free(pile->bottom);
-	free(pile);
+	pile = NULL;
 	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:35:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 16:08:16 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/09 16:05:40 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			rotate(t_pile *pile)
 {
 	int			data;
 
-	if (!pile || (pile->top == pile->bottom))
+	if (!pile || pile->nb_elem == 1)
 		return ;
 	data = del_top(pile);
 	add_to_bottom(pile, data);
@@ -43,7 +43,7 @@ void			rrotate(t_pile *pile)
 {
 	int			data;
 
-	if (!pile || (pile->top == pile->bottom))
+	if (!pile || pile->nb_elem == 1)
 		return ;
 	data = del_bottom(pile);
 	add_to_top(pile, data);
@@ -54,10 +54,15 @@ void			swap(t_pile *pile)
 	int			data1;
 	int			data2;
 
-	if (!pile || (pile->top == pile->bottom))
+	if (!pile || pile->nb_elem == 1)
 		return ;
-	data1 = del_top(pile);
-	data2 = del_top(pile);
-	add_to_top(pile, data1);
-	add_to_top(pile, data2);
+	if (pile->nb_elem == 2)
+		rotate(pile);
+	else
+	{
+		data1 = del_top(pile);
+		data2 = del_top(pile);
+		add_to_top(pile, data1);
+		add_to_top(pile, data2);
+	}
 }
