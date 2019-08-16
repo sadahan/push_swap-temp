@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 13:11:18 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 16:29:23 by sadahan          ###   ########.fr       */
+/*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
+/*   Updated: 2019/08/16 16:19:12 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ typedef	struct		s_pile
 {
 	t_element		*top;
 	t_element		*bottom;
+	int				nb_elem;
 }					t_pile;
 
+void				ft_putchar(char c);
+void				ft_putnbr(int n);
+int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
 int					ft_strcmp(const char *s1, const char *s2);
 int					check_errors(int argc, char **argv);
@@ -46,12 +50,12 @@ t_pile				*push(t_pile *pile_a, t_pile *pile_b);
 void				rotate(t_pile *pile);
 void				rrotate(t_pile *pile);
 void				swap(t_pile *pile);
-int					check_if_sorted(t_pile *pile);
-void				checker(t_pile *pile_a);
-t_pile				*read_instructions(t_pile *pile_a, char *buff);
-t_pile				*exe_instructions(t_pile *pile_a, char *instruction);
-int					check_if_sorted(t_pile *pile);
 void				print_pile(t_pile *pile);
-int					check_false_instruction(char *instruction);
+void				quicksort_list(t_element *bottom, t_element *top);
+t_element			*partition(t_element *bottom, t_element *top);
+int					find_med(t_pile *pile, int nb_elem);
+
+
+t_pile	*perso_sort(t_pile *pile);
 
 #endif
