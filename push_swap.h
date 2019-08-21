@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/16 16:19:12 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/17 09:57:34 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				swap(t_pile *pile);
 void				print_pile(t_pile *pile);
 void				quicksort_list(t_element *bottom, t_element *top);
 t_element			*partition(t_element *bottom, t_element *top);
-int					find_med(t_pile *pile, int nb_elem);
+int					median(t_pile *pile, int nb_elem);
 
 
 t_pile	*perso_sort(t_pile *pile);

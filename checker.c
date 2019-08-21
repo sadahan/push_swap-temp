@@ -6,20 +6,23 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/02 16:29:34 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/21 14:19:25 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
+#include <stdio.h>
 
-int					check_if_sorted(t_pile *pile)
+int					check_if_sorted(t_pile *pile, int sens)
 {
 	t_element		*elem;
 
 	elem = pile->top;
 	while (elem->prev != NULL)
 	{
-		if (elem->nb > elem->prev->nb)
+		if (sens == 1 && elem->nb > elem->prev->nb)
+			return (0);
+		if (sens == -1 && elem->nb < elem->prev->nb)
 			return (0);
 		elem = elem->prev;
 	}
@@ -81,10 +84,7 @@ t_pile				*read_instructions(t_pile *pile_a, char *buff)
 		}
 		instruction[j] = '\0';
 		if (!check_false_instruction(instruction))
-		{
-			write(2, "Error\n", 6);
-			return (pile_a);
-		}
+			return (NULL);
 		pile_a = exe_instructions(pile_a, instruction);
 		i++;
 	}
@@ -96,16 +96,29 @@ void				checker(t_pile *pile_a)
 	int				ret;
 	char			buff[30000];
 	int				fd;
+	char			inst[30000];
 
-	fd = open("inst.txt", O_RDONLY);
+	if (check_if_sorted(pile_a, 1))
+	{		
+		write(1, "OK\n", 3);
+		return ;
+	}
+	fd = open("inst2.txt", O_RDONLY);
 	if (fd == -1)
 		fd = 0;
 	while ((ret = read(fd, buff, 29999)))
+	{
 		buff[ret] = '\0';
+		ft_strcat(inst, buff);
+	}
 	close(fd);
-	pile_a = read_instructions(pile_a, buff);
+	if (!(pile_a = read_instructions(pile_a, inst)))
+	{
+		write(2, "Error\n", 6);
+		return ;
+	}
 	print_pile(pile_a);
-	if (check_if_sorted(pile_a) == 1)
+	if (check_if_sorted(pile_a, 1))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

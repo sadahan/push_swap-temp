@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:59:57 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/16 16:45:55 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/17 09:57:36 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_pile			*copy_pile(t_pile *src, int nb_elem)
 	return (dest);
 }
 
-int				find_med(t_pile *pile, int nb_elem)
+int				median(t_pile *pile, int nb_elem)
 {
 	t_pile		*temp;
 	int			i;
