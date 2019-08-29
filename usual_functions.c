@@ -6,15 +6,15 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:19:55 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/21 14:19:13 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:43:07 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			ft_putchar(char c)
+void			ft_putchar_fd(char c, int fd)
 {
-	write(1, &c, 1);
+	write(fd, &c, 1);
 }
 
 void			ft_putnbr(int n)
@@ -24,12 +24,12 @@ void			ft_putnbr(int n)
 	nb = n;
 	if (nb < 0)
 	{
-		ft_putchar('-');
+		ft_putchar_fd('-', 1);
 		nb *= -1;
 	}
 	if (nb > 9)
 		ft_putnbr(nb / 10);
-	ft_putchar(nb % 10 + '0');
+	ft_putchar_fd(nb % 10 + '0', 1);
 }
 
 int				ft_strcmp(const char *s1, const char *s2)
@@ -44,8 +44,8 @@ int				ft_strcmp(const char *s1, const char *s2)
 
 char			*ft_strcat(char *dest, const char *src)
 {
-	int 		i;
-	int 		l;
+	int			i;
+	int			l;
 
 	l = 0;
 	while (dest[l])

@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/17 09:57:34 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:45:53 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,15 @@ typedef	struct		s_pile
 	int				nb_elem;
 }					t_pile;
 
-void				ft_putchar(char c);
+int					check_if_sorted(t_pile *pile, int sens);
+void				checker(t_pile *pile_a);
+t_pile				*read_instructions(t_pile *pile_a, char *buff, int fd);
+t_pile				*exe_instructions(t_pile *pile_a, char *instruction,
+					int fd);
+int					check_false_instruction(char *instruction);
+char				*ft_strcat(char *dest, const char *src);
+void				ft_putchar_fd(char c, int fd);
+void				ft_putstr_fd(char const *s, int fd);
 void				ft_putnbr(int n);
 int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
@@ -46,16 +54,17 @@ void				add_to_top(t_pile *pile, int data);
 int					del_top(t_pile *pile);
 int					del_bottom(t_pile *pile);
 int					del_pile(t_pile *pile);
-t_pile				*push(t_pile *pile_a, t_pile *pile_b);
-void				rotate(t_pile *pile);
-void				rrotate(t_pile *pile);
-void				swap(t_pile *pile);
+t_pile				*push(t_pile *pile_a, t_pile *pile_b, char *str, int fd);
+void				rotate(t_pile *pile, char *str, int fd);
+void				rrotate(t_pile *pile, char *str, int fd);
+void				swap(t_pile *pile, char *str, int fd);
 void				print_pile(t_pile *pile);
 void				quicksort_list(t_element *bottom, t_element *top);
 t_element			*partition(t_element *bottom, t_element *top);
 int					median(t_pile *pile, int nb_elem);
-
-
-t_pile	*perso_sort(t_pile *pile);
+void				quicksort_pile(t_pile *pile1, t_pile *pile2, int nb_elem,
+					int sens);
+void				sort_small_pile(t_pile *pile, int fd);
+t_pile				*perso_sort(t_pile *pile);
 
 #endif

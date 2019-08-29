@@ -6,11 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/21 14:19:25 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:55:32 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 #include <stdio.h>
 
 int					check_if_sorted(t_pile *pile, int sens)
@@ -29,28 +29,28 @@ int					check_if_sorted(t_pile *pile, int sens)
 	return (1);
 }
 
-t_pile				*exe_instructions(t_pile *pile_a, char *instruction)
+t_pile				*exe_instructions(t_pile *pile_a, char *instruction, int fd)
 {
 	static t_pile	*pile_b;
 
 	if (!pile_b)
 		pile_b = NULL;
 	if (!ft_strcmp(instruction, "sa") || !ft_strcmp(instruction, "ss"))
-		swap(pile_a);
+		swap(pile_a, NULL, fd);
 	if (!ft_strcmp(instruction, "sb") || !ft_strcmp(instruction, "ss"))
-		swap(pile_b);
+		swap(pile_b, NULL, fd);
 	if (!ft_strcmp(instruction, "pa"))
-		pile_a = push(pile_b, pile_a);
+		pile_a = push(pile_b, pile_a, NULL, fd);
 	if (!ft_strcmp(instruction, "pb"))
-		pile_b = push(pile_a, pile_b);
+		pile_b = push(pile_a, pile_b, NULL, fd);
 	if (!ft_strcmp(instruction, "ra") || !ft_strcmp(instruction, "rr"))
-		rotate(pile_a);
+		rotate(pile_a, NULL, fd);
 	if (!ft_strcmp(instruction, "rb") || !ft_strcmp(instruction, "rr"))
-		rotate(pile_b);
+		rotate(pile_b, NULL, fd);
 	if (!ft_strcmp(instruction, "rra") || !ft_strcmp(instruction, "rrr"))
-		rrotate(pile_a);
+		rrotate(pile_a, NULL, fd);
 	if (!ft_strcmp(instruction, "rrb") || !ft_strcmp(instruction, "rrr"))
-		rrotate(pile_b);
+		rrotate(pile_b, NULL, fd);
 	return (pile_a);
 }
 
@@ -66,7 +66,7 @@ int					check_false_instruction(char *instruction)
 	return (0);
 }
 
-t_pile				*read_instructions(t_pile *pile_a, char *buff)
+t_pile				*read_instructions(t_pile *pile_a, char *buff, int fd)
 {
 	int				i;
 	char			instruction[4];
@@ -85,7 +85,7 @@ t_pile				*read_instructions(t_pile *pile_a, char *buff)
 		instruction[j] = '\0';
 		if (!check_false_instruction(instruction))
 			return (NULL);
-		pile_a = exe_instructions(pile_a, instruction);
+		pile_a = exe_instructions(pile_a, instruction, fd);
 		i++;
 	}
 	return (pile_a);
@@ -99,27 +99,22 @@ void				checker(t_pile *pile_a)
 	char			inst[30000];
 
 	if (check_if_sorted(pile_a, 1))
-	{		
+	{
 		write(1, "OK\n", 3);
 		return ;
 	}
-	fd = open("inst2.txt", O_RDONLY);
-	if (fd == -1)
-		fd = 0;
+	fd = open("inst.txt", O_RDONLY);
+	fd = (fd == -1) ? 0 : fd;
 	while ((ret = read(fd, buff, 29999)))
 	{
 		buff[ret] = '\0';
 		ft_strcat(inst, buff);
 	}
 	close(fd);
-	if (!(pile_a = read_instructions(pile_a, inst)))
+	if (!(pile_a = read_instructions(pile_a, inst, fd)))
 	{
 		write(2, "Error\n", 6);
 		return ;
 	}
-	print_pile(pile_a);
-	if (check_if_sorted(pile_a, 1))
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
+	check_if_sorted(pile_a, 1) == 1 ? write(1, "OK\n", 3) : write(1, "KO\n", 3);
 }

@@ -6,18 +6,18 @@
 #    By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/02 15:09:23 by sadahan           #+#    #+#              #
-#    Updated: 2019/08/16 16:46:42 by sadahan          ###   ########.fr        #
+#    Updated: 2019/08/29 16:44:06 by sadahan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-gcc main1.c check_errors.c init_del_pile.c quicksort_pile.c quicksort_list.c manage_pile.c checker.c push_swap_rotate.c usual_functions.c -I push_swap.h checker.h                         
+gcc -Wall -Wextra -Werror main1.c check_errors.c init_del_pile.c manage_pile.c checker.c push_swap_rotate.c usual_functions.c small_lists.c quicksort_pile.c quicksort_list.c -I push_swap.h                 
 
 
 NAME1 = checker
 
 NAME2 = push_swap
 
-HEADS = checker.h push_swap.h (pour les deux)
+HEADS = push_swap.h
 
 CC = gcc
 
