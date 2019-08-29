@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:35:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 16:46:48 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:08:14 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_pile			*push(t_pile *pile_a, t_pile *pile_b, char *str, int fd)
 {
 	int			data;
 
+	data = 0;
+	if (!pile_a)
+		return (pile_b);
 	if (pile_a)
 	{
 		data = del_top(pile_a);
@@ -54,6 +57,7 @@ void			rotate(t_pile *pile, char *str, int fd)
 {
 	int			data;
 
+	data = 0;
 	if (!pile || pile->nb_elem == 1)
 		return ;
 	data = del_top(pile);
@@ -69,6 +73,7 @@ void			rrotate(t_pile *pile, char *str, int fd)
 {
 	int			data;
 
+	data = 0;
 	if (!pile || pile->nb_elem == 1)
 		return ;
 	data = del_bottom(pile);
@@ -85,6 +90,8 @@ void			swap(t_pile *pile, char *str, int fd)
 	int			data1;
 	int			data2;
 
+	data1 = 0;
+	data2 = 0;
 	if (!pile || pile->nb_elem == 1)
 		return ;
 	if (pile->nb_elem == 2)

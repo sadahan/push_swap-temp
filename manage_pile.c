@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 16:47:14 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:06:34 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void			add_to_bottom(t_pile *pile, int data)
 {
 	t_element	*new;
 
+	new = NULL;
 	if (!pile)
 		return ;
 	if (!(new = malloc(sizeof(t_element))))
@@ -32,6 +33,7 @@ void			add_to_top(t_pile *pile, int data)
 {
 	t_element	*new;
 
+	new = NULL;
 	if (!pile)
 		return ;
 	if (!(new = malloc(sizeof(t_element))))

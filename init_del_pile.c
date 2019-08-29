@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:09:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/14 11:43:38 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:01:43 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_pile			*init_pile(int data)
 	t_element	*element;
 
 	if (!(pile = malloc(sizeof(t_pile))))
-		exit(EXIT_FAILURE);
+		return (NULL);
 	if (!(element = malloc(sizeof(t_element))))
-		exit(EXIT_FAILURE);
+		return (NULL);
 	element->nb = data;
 	element->next = NULL;
 	element->prev = NULL;

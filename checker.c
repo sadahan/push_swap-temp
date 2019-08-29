@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 16:55:32 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:10:24 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ int					check_if_sorted(t_pile *pile, int sens)
 {
 	t_element		*elem;
 
+	elem = NULL;
+	if (!pile)
+		return (1);
 	elem = pile->top;
 	while (elem->prev != NULL)
 	{
@@ -40,9 +43,11 @@ t_pile				*exe_instructions(t_pile *pile_a, char *instruction, int fd)
 	if (!ft_strcmp(instruction, "sb") || !ft_strcmp(instruction, "ss"))
 		swap(pile_b, NULL, fd);
 	if (!ft_strcmp(instruction, "pa"))
-		pile_a = push(pile_b, pile_a, NULL, fd);
+		if (!(pile_a = push(pile_b, pile_a, NULL, fd)))
+			return (NULL);
 	if (!ft_strcmp(instruction, "pb"))
-		pile_b = push(pile_a, pile_b, NULL, fd);
+		if (!(pile_b = push(pile_a, pile_b, NULL, fd)))
+			return (NULL);
 	if (!ft_strcmp(instruction, "ra") || !ft_strcmp(instruction, "rr"))
 		rotate(pile_a, NULL, fd);
 	if (!ft_strcmp(instruction, "rb") || !ft_strcmp(instruction, "rr"))
@@ -85,7 +90,8 @@ t_pile				*read_instructions(t_pile *pile_a, char *buff, int fd)
 		instruction[j] = '\0';
 		if (!check_false_instruction(instruction))
 			return (NULL);
-		pile_a = exe_instructions(pile_a, instruction, fd);
+		if (!(pile_a = exe_instructions(pile_a, instruction, fd)))
+			return (NULL);
 		i++;
 	}
 	return (pile_a);
