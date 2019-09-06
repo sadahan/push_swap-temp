@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 16:45:53 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/06 14:34:08 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,12 @@ void				quicksort_list(t_element *bottom, t_element *top);
 t_element			*partition(t_element *bottom, t_element *top);
 int					median(t_pile *pile, int nb_elem);
 void				quicksort_pile(t_pile *pile1, t_pile *pile2, int nb_elem,
-					int sens);
+					int sens, int fd);
 void				sort_small_pile(t_pile *pile, int fd);
-t_pile				*perso_sort(t_pile *pile);
+t_pile				*perso_sort(t_pile *pile, int fd);
+int				sort_pile_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd);
+void				sort_pile_a(t_pile *pile1, t_pile *pile2, int nb_elem, int fd);
+int				check_sort_3(t_pile *pile, int nb_elem, int sens);
+void			sort_three(t_pile *pile, int nb_elem, int sens, int fd);
 
 #endif

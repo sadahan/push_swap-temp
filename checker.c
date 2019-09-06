@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 17:10:24 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/08/30 15:55:15 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ int					check_if_sorted(t_pile *pile, int sens)
 
 t_pile				*exe_instructions(t_pile *pile_a, char *instruction, int fd)
 {
-	static t_pile	*pile_b;
+	static t_pile	*pile_b = NULL;
 
-	if (!pile_b)
-		pile_b = NULL;
 	if (!ft_strcmp(instruction, "sa") || !ft_strcmp(instruction, "ss"))
 		swap(pile_a, NULL, fd);
 	if (!ft_strcmp(instruction, "sb") || !ft_strcmp(instruction, "ss"))
@@ -100,7 +98,7 @@ t_pile				*read_instructions(t_pile *pile_a, char *buff, int fd)
 void				checker(t_pile *pile_a)
 {
 	int				ret;
-	char			buff[30000];
+	char			buff[2];
 	int				fd;
 	char			inst[30000];
 
@@ -111,7 +109,7 @@ void				checker(t_pile *pile_a)
 	}
 	fd = open("inst.txt", O_RDONLY);
 	fd = (fd == -1) ? 0 : fd;
-	while ((ret = read(fd, buff, 29999)))
+	while ((ret = read(fd, buff, 1)))
 	{
 		buff[ret] = '\0';
 		ft_strcat(inst, buff);

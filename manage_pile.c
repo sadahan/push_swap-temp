@@ -6,11 +6,12 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 17:06:34 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/06 16:48:03 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void			add_to_bottom(t_pile *pile, int data)
 {
@@ -18,7 +19,7 @@ void			add_to_bottom(t_pile *pile, int data)
 
 	new = NULL;
 	if (!pile)
-		return ;
+		exit(EXIT_FAILURE);
 	if (!(new = malloc(sizeof(t_element))))
 		exit(EXIT_FAILURE);
 	new->nb = data;
@@ -29,13 +30,13 @@ void			add_to_bottom(t_pile *pile, int data)
 	pile->nb_elem++;
 }
 
-void			add_to_top(t_pile *pile, int data)
+void		add_to_top(t_pile *pile, int data)
 {
 	t_element	*new;
 
 	new = NULL;
 	if (!pile)
-		return ;
+		exit(EXIT_FAILURE);
 	if (!(new = malloc(sizeof(t_element))))
 		exit(EXIT_FAILURE);
 	new->nb = data;
@@ -57,7 +58,8 @@ int				del_top(t_pile *pile)
 		temp = pile->top->prev;
 		data = pile->top->nb;
 		temp->next = NULL;
-		pile->top->prev = NULL;
+		//pile->top->prev = NULL;
+		//free(pile->top->nb);
 		free(pile->top);
 		pile->top = temp;
 		pile->nb_elem--;
@@ -78,7 +80,7 @@ int				del_bottom(t_pile *pile)
 		temp = pile->bottom->next;
 		data = pile->bottom->nb;
 		temp->prev = NULL;
-		pile->bottom->next = NULL;
+		//pile->bottom->next = NULL;
 		free(pile->bottom);
 		pile->bottom = temp;
 		pile->nb_elem--;
