@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:49:53 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/06 16:14:52 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/19 16:14:34 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ int				sort_elem_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 	med = median(pile1, nb_elem);
 	while (nb_elem--)
 	{
-		if (pile1->top->nb >= med)
-		{
-			if (!(pile2 = push(pile1, pile2, "pa", fd)))
+		(pile1->top->nb < med) ? r++ : p++;
+		if (pile1->top->nb < med)
+			rotate(pile1, "rb", fd);
+		else if (!(pile2 = push(pile1, pile2, "pa", fd)))
 				return (0);
-			p++;
-		}
-		(pile1->top->nb < med) ? r++ : r;
-		(pile1->top->nb < med) ? rotate(pile1, "rb", fd) : r;
 	}
 	while (r-- > 0)
 		rrotate(pile1, "rrb", fd);

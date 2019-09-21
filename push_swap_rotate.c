@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:35:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/08/29 17:08:14 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:13:32 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			swap(t_pile *pile, char *str, int fd)
 	if (!pile || pile->nb_elem == 1)
 		return ;
 	if (pile->nb_elem == 2)
-		rotate(pile, str, fd);
+		rotate(pile, NULL, fd);
 	else
 	{
 		data1 = del_top(pile);

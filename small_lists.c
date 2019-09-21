@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 11:39:28 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/06 15:48:47 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:10:46 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,31 @@ void			sort_3_elem(t_pile *pile, int sens, int fd)
 		sens == 1 ? rotate(pile, "ra", fd) : rotate(pile, "rb", fd);
 }
 
-void			sort_small_pile(t_pile *pile, int fd)
+void			sort_small_pile(t_pile *pile_a, int fd)
 {
 	int			med;
-	t_pile		*pile_tmp;
+	t_pile		*pile_b;
 	int			i;
 
 	i = 0;
-	pile_tmp = NULL;
-	med = median(pile, pile->nb_elem);
-	if (pile->nb_elem <= 3)
-		sort_3_elem(pile, 1, fd);
-	if (check_if_sorted(pile, 1))
+	pile_b = NULL;
+	med = median(pile_a, pile_a->nb_elem);
+	if (pile_a->nb_elem <= 3)
+		sort_3_elem(pile_a, 1, fd);
+	if (check_if_sorted(pile_a, 1))
 		return ;
-	while (pile->nb_elem > 3)
+	while (pile_a->nb_elem > 3)
 	{
-		if (pile->top->nb < med)
+		if (pile_a->top->nb < med)
 		{
-			pile_tmp = push(pile, pile_tmp, "pb", fd);
+			pile_b = push(pile_a, pile_b, "pb", fd);
 			i++;
 		}
 		else
-			rotate(pile, "ra", fd);
+			rotate(pile_a, "ra", fd);
 	}
-	sort_3_elem(pile, 1, fd);
-	sort_3_elem(pile_tmp, -1, fd);
+	sort_3_elem(pile_a, 1, fd);
+	sort_3_elem(pile_b, -1, fd);
 	while (i-- > 0)
-		pile = push(pile_tmp, pile, "pa", fd);
+		pile_a = push(pile_b, pile_a, "pa", fd);
 }

@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/06 14:34:08 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:09:46 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef	struct		s_elem
 {
@@ -34,7 +35,7 @@ typedef	struct		s_pile
 }					t_pile;
 
 int					check_if_sorted(t_pile *pile, int sens);
-void				checker(t_pile *pile_a);
+int					checker(t_pile *pile_a);
 t_pile				*read_instructions(t_pile *pile_a, char *buff, int fd);
 t_pile				*exe_instructions(t_pile *pile_a, char *instruction,
 					int fd);

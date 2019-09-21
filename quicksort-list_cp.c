@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quicksort_list.c                                   :+:      :+:    :+:   */
+/*   quicksort-list_cp.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 11:37:54 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/21 18:55:06 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:37:21 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ t_element		*partition(t_element *bottom, t_element *top)
 	j = bottom;
 	while (j != top)
 	{
-		//if (j->nb <= pivot)
-		if (j->nb >= pivot)
+		if (j->nb <= pivot)
 		{
 			if (i == NULL)
 				i = bottom;

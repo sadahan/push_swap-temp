@@ -6,12 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/06 16:48:03 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/19 16:04:46 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void			add_to_bottom(t_pile *pile, int data)
 {
@@ -58,8 +57,6 @@ int				del_top(t_pile *pile)
 		temp = pile->top->prev;
 		data = pile->top->nb;
 		temp->next = NULL;
-		//pile->top->prev = NULL;
-		//free(pile->top->nb);
 		free(pile->top);
 		pile->top = temp;
 		pile->nb_elem--;
@@ -80,7 +77,6 @@ int				del_bottom(t_pile *pile)
 		temp = pile->bottom->next;
 		data = pile->bottom->nb;
 		temp->prev = NULL;
-		//pile->bottom->next = NULL;
 		free(pile->bottom);
 		pile->bottom = temp;
 		pile->nb_elem--;
@@ -88,4 +84,23 @@ int				del_bottom(t_pile *pile)
 	else
 		data = del_pile(pile);
 	return (data);
+}
+
+int					check_if_sorted(t_pile *pile, int sens)
+{
+	t_element		*elem;
+
+	elem = NULL;
+	if (!pile)
+		return (1);
+	elem = pile->top;
+	while (elem->prev != NULL)
+	{
+		if (sens == 1 && elem->nb > elem->prev->nb)
+			return (0);
+		if (sens == -1 && elem->nb < elem->prev->nb)
+			return (0);
+		elem = elem->prev;
+	}
+	return (1);
 }

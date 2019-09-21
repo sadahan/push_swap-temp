@@ -6,11 +6,12 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:16:37 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/06 15:51:51 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:55:19 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 t_pile			*copy_pile(t_pile *src, int nb_elem)
 {
@@ -39,7 +40,8 @@ int				median(t_pile *pile, int nb_elem)
 	int			med;
 
 	med = 0;
-	i = (nb_elem % 2 == 0) ? 1 : 0;
+	//i = (nb_elem % 2 == 0) ? 1 : 0;
+	i = 0;
 	if (!pile)
 		exit(EXIT_FAILURE);
 	if (!(temp = copy_pile(pile, nb_elem)))

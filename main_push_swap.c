@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main1.c                                            :+:      :+:    :+:   */
+/*   main_push_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:44:29 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/06 14:20:31 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/21 19:10:53 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,23 @@ int				main(int argc, char **argv)
 		return (0);
 	while (--argc > 0)
 		add_to_top(pile_a, ft_atoi(argv[argc]));
-//	if (pile_a->nb_elem <= 5)
-//		sort_small_pile(pile_a, fd);
+	if (check_if_sorted(pile_a, 1))
+		return (0);
+	if (pile_a->nb_elem <= 5)
+		sort_small_pile(pile_a, fd);
+		if (check_if_sorted(pile_a, 1))
+		write(1, "OK\n", 3);
 //	checker(pile_a);
 //	printf("-----\n");
 //printf("med = %d\n", median(pile_a, pile_a->nb_elem));
 //	quicksort_pile(pile_a, pile_b, pile_a->nb_elem, 1, fd);
 //pile_a = perso_sort(pile_a, fd);  // pas tout à fait bon
+else 
 sort_pile_a(pile_a, pile_b, pile_a->nb_elem, fd);
 	if (check_if_sorted(pile_a, 1))
-		write(1, "OK\n", 3);
-	//	printf("pile A :\n");
-//	print_pile(pile_a);
+	write(1, "OK\n", 3);
+		//printf("pile A :\n");
+	//	print_pile(pile_a);
 		close(fd);
 //		printf("pile B :\n");
 //	print_pile(pile_b);
