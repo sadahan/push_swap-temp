@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/08 16:02:31 by sadahan           #+#    #+#             */
+/*   Updated: 2019/01/10 17:44:43 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
 
-int			main(int ac, char **av)
+char	*ft_strstr(const char *str, const char *to_find)
 {
-	t_pile	*pile_a;
+	int i;
+	int j;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
+	i = 0;
+	if (to_find[i] == '\0')
+		return ((char *)str);
+	while (str[i])
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		j = 0;
+		while (to_find[j] == str[i + j])
+		{
+			if (to_find[j + 1] == '\0')
+				return ((char *)str + i);
+			j++;
+		}
+		i++;
 	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	return (NULL);
 }

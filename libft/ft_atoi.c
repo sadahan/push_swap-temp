@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/08 13:51:34 by sadahan           #+#    #+#             */
+/*   Updated: 2019/01/15 11:01:52 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int			main(int ac, char **av)
+int	ft_atoi(const char *str)
 {
-	t_pile	*pile_a;
+	int	res;
+	int sign;
+	int	i;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
+	res = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
+			|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		res = res * 10 + str[i] - '0';
+		i++;
 	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	return (sign * res);
 }

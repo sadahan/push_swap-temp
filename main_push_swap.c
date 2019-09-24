@@ -6,27 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:44:29 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/21 19:10:53 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/24 17:26:49 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-void			print_pile(t_pile *pile)
-{
-	t_element	*elem;
-
-	if (!pile)
-		return ;
-	elem = pile->top;
-	while (elem != NULL)
-	{
-		ft_putnbr(elem->nb);
-		write(1, "\n", 1);
-		elem = elem->prev;
-	}
-}
 
 int				main(int argc, char **argv)
 {
@@ -55,8 +39,8 @@ int				main(int argc, char **argv)
 		return (0);
 	if (pile_a->nb_elem <= 5)
 		sort_small_pile(pile_a, fd);
-		if (check_if_sorted(pile_a, 1))
-		write(1, "OK\n", 3);
+	//	if (check_if_sorted(pile_a, 1))
+	//	write(1, "OK\n", 3);
 //	checker(pile_a);
 //	printf("-----\n");
 //printf("med = %d\n", median(pile_a, pile_a->nb_elem));
@@ -64,8 +48,8 @@ int				main(int argc, char **argv)
 //pile_a = perso_sort(pile_a, fd);  // pas tout à fait bon
 else 
 sort_pile_a(pile_a, pile_b, pile_a->nb_elem, fd);
-	if (check_if_sorted(pile_a, 1))
-	write(1, "OK\n", 3);
+//	if (check_if_sorted(pile_a, 1))
+//	write(1, "OK\n", 3);
 		//printf("pile A :\n");
 	//	print_pile(pile_a);
 		close(fd);

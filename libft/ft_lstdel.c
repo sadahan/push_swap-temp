@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/15 12:41:46 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/24 18:00:51 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "./includes/libft.h"
+#include <stdlib.h>
 
-int			main(int ac, char **av)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_pile	*pile_a;
+	t_list	*lst;
+	t_list	*next_lst;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
+	lst = *alst;
+	while (lst)
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		next_lst = lst->next;
+		del(lst->content, lst->content_size);
+		free(lst);
+		lst = next_lst;
 	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	*alst = NULL;
 }

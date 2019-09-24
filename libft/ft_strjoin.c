@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/11 18:05:18 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/24 18:00:51 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
+#include <stdlib.h>
+#include "./includes/libft.h"
 
-int			main(int ac, char **av)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_pile	*pile_a;
+	char	*new_str;
+	int		size;
+	char	*temp;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	if ((new_str = (char *)malloc(sizeof(char) * (size + 1))) == 0)
+		return (NULL);
+	temp = ft_strdup(s1);
+	new_str = ft_strcat(temp, s2);
+	return (new_str);
 }

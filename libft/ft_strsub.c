@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/11 17:41:17 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/24 18:00:51 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
+#include <string.h>
+#include "./includes/libft.h"
 
-int			main(int ac, char **av)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	t_pile	*pile_a;
+	char	*sub_str;
+	size_t	i;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
+	if (!s)
+		return (NULL);
+	if ((sub_str = (char *)malloc(sizeof(char) * (len + 1))) == 0)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		sub_str[i] = s[start];
+		i++;
+		start++;
 	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	sub_str[i] = '\0';
+	return (sub_str);
 }

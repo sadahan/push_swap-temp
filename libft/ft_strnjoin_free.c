@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_strnjoin_free.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/02/08 18:51:08 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/24 18:00:51 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
+#include <stdlib.h>
+#include "./includes/libft.h"
 
-int			main(int ac, char **av)
+char	*ft_strnjoin_free(char *s1, char *s2, int n)
 {
-	t_pile	*pile_a;
+	char	*dest;
 
-	pile_a = NULL;
-	if (ac < 2)
+	if (!s1 || !s2)
 		return (0);
-	if (!check_errors(ac, av))
-	{
-		write(2, "Error\n", 6);
+	if (!(dest = ft_strnew(sizeof(char) * (ft_strlen(s1) + n))))
 		return (0);
-	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	ft_strcpy(dest, s1);
+	ft_strncat(dest, s2, n);
+	ft_strdel((char**)&s1);
+	return (dest);
 }

@@ -6,26 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:35:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/21 18:13:32 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/24 18:46:29 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-void			ft_putstr_fd(char const *s, int fd)
-{
-	int			i;
-
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
-}
 
 t_pile			*push(t_pile *pile_a, t_pile *pile_b, char *str, int fd)
 {

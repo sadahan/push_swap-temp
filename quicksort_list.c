@@ -6,20 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 11:37:54 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/21 18:55:06 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/24 18:45:29 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void			ft_swap(int *a, int *b)
-{
-	int			temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
 
 t_element		*partition(t_element *bottom, t_element *top)
 {
@@ -32,7 +23,6 @@ t_element		*partition(t_element *bottom, t_element *top)
 	j = bottom;
 	while (j != top)
 	{
-		//if (j->nb <= pivot)
 		if (j->nb >= pivot)
 		{
 			if (i == NULL)

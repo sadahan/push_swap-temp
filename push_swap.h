@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/21 18:09:46 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/24 18:46:38 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include "./libft/includes/libft.h"
 
 typedef	struct		s_elem
 {
@@ -36,19 +37,10 @@ typedef	struct		s_pile
 
 int					check_if_sorted(t_pile *pile, int sens);
 int					checker(t_pile *pile_a);
-t_pile				*read_instructions(t_pile *pile_a, char *buff, int fd);
-t_pile				*exe_instructions(t_pile *pile_a, char *instruction,
-					int fd);
+t_pile				*read_instructions(t_pile *pile_a, char *buff);
+t_pile				*exe_instructions(t_pile *pile_a, char *instruction);
 int					check_false_instruction(char *instruction);
-char				*ft_strcat(char *dest, const char *src);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char const *s, int fd);
-void				ft_putnbr(int n);
-int					ft_atoi(const char *str);
-int					ft_isdigit(int c);
-int					ft_strcmp(const char *s1, const char *s2);
 int					check_errors(int argc, char **argv);
-long int			ft_atoli(const char *str);
 t_pile				*init_pile(int data);
 void				add_to_bottom(t_pile *pile, int data);
 void				add_to_top(t_pile *pile, int data);
@@ -67,9 +59,10 @@ void				quicksort_pile(t_pile *pile1, t_pile *pile2, int nb_elem,
 					int sens, int fd);
 void				sort_small_pile(t_pile *pile, int fd);
 t_pile				*perso_sort(t_pile *pile, int fd);
-int				sort_pile_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd);
-void				sort_pile_a(t_pile *pile1, t_pile *pile2, int nb_elem, int fd);
-int				check_sort_3(t_pile *pile, int nb_elem, int sens);
-void			sort_three(t_pile *pile, int nb_elem, int sens, int fd);
+int					sort_pile_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd);
+void				sort_pile_a(t_pile *pile1, t_pile *pile2, int nb_elem,
+					int fd);
+int					check_sort_3(t_pile *pile, int nb_elem, int sens);
+void				sort_three(t_pile *pile, int nb_elem, int sens, int fd);
 
 #endif

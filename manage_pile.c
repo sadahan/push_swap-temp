@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/19 16:04:46 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/24 18:38:54 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			add_to_bottom(t_pile *pile, int data)
 	pile->nb_elem++;
 }
 
-void		add_to_top(t_pile *pile, int data)
+void			add_to_top(t_pile *pile, int data)
 {
 	t_element	*new;
 
@@ -86,9 +86,9 @@ int				del_bottom(t_pile *pile)
 	return (data);
 }
 
-int					check_if_sorted(t_pile *pile, int sens)
+int				check_if_sorted(t_pile *pile, int sens)
 {
-	t_element		*elem;
+	t_element	*elem;
 
 	elem = NULL;
 	if (!pile)

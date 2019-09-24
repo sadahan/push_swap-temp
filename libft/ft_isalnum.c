@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/08 12:30:27 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/24 18:00:51 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "./includes/libft.h"
 
-int			main(int ac, char **av)
+int		ft_isalnum(int c)
 {
-	t_pile	*pile_a;
-
-	pile_a = NULL;
-	if (ac < 2)
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	else
 		return (0);
-	if (!check_errors(ac, av))
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
 }

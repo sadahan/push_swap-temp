@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/10 18:14:20 by sadahan           #+#    #+#             */
+/*   Updated: 2019/01/17 14:12:20 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
 
-int			main(int ac, char **av)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_pile	*pile_a;
+	unsigned char	*temp1;
+	unsigned char	*temp2;
+	size_t			i;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
+	temp1 = (unsigned char*)s1;
+	temp2 = (unsigned char*)s2;
+	i = 0;
+	while (i < n)
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		if (*temp1 != *temp2)
+			return (*temp1 - *temp2);
+		i++;
+		temp1++;
+		temp2++;
 	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	return (0);
 }

@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 13:05:44 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:12:59 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/08 13:06:37 by sadahan           #+#    #+#             */
+/*   Updated: 2019/01/10 16:00:45 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
+#include <string.h>
 
-int			main(int ac, char **av)
+char	*ft_strdup(const char *src)
 {
-	t_pile	*pile_a;
+	int		l;
+	char	*new_str;
+	int		i;
 
-	pile_a = NULL;
-	if (ac < 2)
-		return (0);
-	if (!check_errors(ac, av))
+	l = 0;
+	while (src[l])
+		l++;
+	if ((new_str = (char*)malloc(sizeof(char) * (l + 1))) == 0)
+		return (NULL);
+	i = 0;
+	while (src[i])
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		new_str[i] = src[i];
+		i++;
 	}
-	ac--;
-	if (!(pile_a = init_pile(ft_atoi(av[ac]))))
-		return (0);
-	while (--ac > 0)
-		add_to_top(pile_a, ft_atoi(av[ac]));
-	if (!checker(pile_a))
-		return (0);
-	return (1);
+	new_str[i] = '\0';
+	return (new_str);
 }

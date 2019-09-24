@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 13:33:43 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 18:44:06 by sadahan          ###   ########.fr       */
+/*   Created: 2019/01/10 15:24:42 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/24 18:00:51 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
+#include <stdlib.h>
+#include "./includes/libft.h"
 
-int				check_errors(int argc, char **argv)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int			i;
-	int			n;
+	size_t	i;
 
-	n = argc - 1;
-	if (argc < 2)
-		return (0);
-	while (n > 0)
+	if ((unsigned char *)src < (unsigned char *)dest)
+		while (n--)
+			((unsigned char *)dest)[n] = ((unsigned char *)src)[n];
+	else
 	{
 		i = 0;
-		if (argv[n][0] == '-')
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 			i++;
-		while (argv[n][i])
-			if (!ft_isdigit(argv[n][i++]))
-				return (0);
-		if (ft_atoli(argv[n]) > 2147483647 || ft_atoli(argv[n]) < -2147483648)
-			return (0);
-		i = n;
-		while (i-- > 0)
-			if (ft_strcmp(argv[n], argv[i]) == 0)
-				return (0);
-		n--;
+		}
 	}
-	return (1);
+	return (dest);
 }
