@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:18:17 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 16:41:10 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 18:17:53 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	write_new_file(char **inst, int fd)
 		}
 		i++;
 	}
-	close(fd);
 }
 
 static int	check_useless_instructions(char *inst1, char *inst2, int type)

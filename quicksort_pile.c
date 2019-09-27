@@ -6,13 +6,13 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:16:37 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/26 15:21:52 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 17:39:24 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_pile	*copy_pile(t_pile *src, int nb_elem)
+t_pile			*copy_pile(t_pile *src, int nb_elem)
 {
 	t_pile		*dest;
 	t_element	*elem;
