@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:33:43 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 18:44:06 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 11:56:01 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				check_errors(int argc, char **argv)
 		i = 0;
 		if (argv[n][0] == '-')
 			i++;
-		while (argv[n][i])
+		while (argv[n][i] && (n > 1 || argv[1][0] != '-'))
 			if (!ft_isdigit(argv[n][i++]))
 				return (0);
 		if (ft_atoli(argv[n]) > 2147483647 || ft_atoli(argv[n]) < -2147483648)

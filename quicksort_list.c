@@ -6,17 +6,17 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 11:37:54 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 18:45:29 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/26 15:21:02 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_element		*partition(t_element *bottom, t_element *top)
+static t_element	*partition(t_element *bottom, t_element *top)
 {
-	int			pivot;
-	t_element	*i;
-	t_element	*j;
+	int				pivot;
+	t_element		*i;
+	t_element		*j;
 
 	pivot = top->nb;
 	i = bottom->prev;
@@ -41,9 +41,9 @@ t_element		*partition(t_element *bottom, t_element *top)
 	return (i);
 }
 
-void			quicksort_list(t_element *bottom, t_element *top)
+void				quicksort_list(t_element *bottom, t_element *top)
 {
-	t_element	*pivot;
+	t_element		*pivot;
 
 	pivot = NULL;
 	if (top && bottom && top != bottom && bottom != top->next)

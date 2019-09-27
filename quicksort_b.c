@@ -6,13 +6,13 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:49:53 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/19 16:14:34 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/26 15:20:40 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int				sort_3_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
+static int		sort_3_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 {
 	int			i;
 
@@ -26,14 +26,16 @@ int				sort_3_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 	return (1);
 }
 
-int				sort_elem_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
+static int		sort_elem_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 {
 	int			p;
 	int			r;
 	int			med;
+	int			rot;
 
 	if (!pile1 || !pile2)
 		return (0);
+	rot = (nb_elem == pile1->nb_elem ? 0 : 1);
 	p = 0;
 	r = 0;
 	med = median(pile1, nb_elem);
@@ -43,9 +45,9 @@ int				sort_elem_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 		if (pile1->top->nb < med)
 			rotate(pile1, "rb", fd);
 		else if (!(pile2 = push(pile1, pile2, "pa", fd)))
-				return (0);
+			return (0);
 	}
-	while (r-- > 0)
+	while (rot == 1 && r-- > 0)
 		rrotate(pile1, "rrb", fd);
 	return (p);
 }

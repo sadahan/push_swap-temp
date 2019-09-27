@@ -6,7 +6,7 @@
 #    By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/02 15:09:23 by sadahan           #+#    #+#              #
-#    Updated: 2019/09/24 18:46:59 by sadahan          ###   ########.fr        #
+#    Updated: 2019/09/27 15:21:40 by sadahan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ CC = gcc
 CFLAGS += -Wall -Werror -Wextra
 
 SRCS =	init_del_pile.c manage_pile.c push_swap_rotate.c check_errors.c \
-		print_pile.c
+		print_pile.c read.c
 
 SRCS1 =	main_checker.c checker.c
 
 SRCS2 =	main_push_swap.c quicksort_a.c quicksort_b.c small_lists.c \
-		quicksort_pile.c quicksort_list.c
+		quicksort_pile.c quicksort_list.c optimize_file.c sort_reverse.c
 
 LIBFT = ./libft/libft.a
 

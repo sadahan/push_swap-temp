@@ -6,59 +6,70 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:44:29 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 17:26:49 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 15:22:20 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int		check_valid_input(int argc, char **argv)
+{
+	if (argc < 2 || (argv[1][0] == '-' && argv[1][1] != 'f'))
+	{
+		write(2, "usage: ./push_swap [-f] $ARGS\n", 30);
+		return (0);
+	}
+	if (!check_errors(argc, argv))
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	return (1);
+}
+
+static int		resolve(t_pile *pile_a, t_pile *pile_b, int nb_elem, int fd)
+{
+	if (!check_if_sorted(pile_a, 1) && nb_elem <= 5)
+	{
+		sort_small_pile(pile_a, fd);
+		return (1);
+	}
+	else if (check_if_sorted(pile_a, -1))
+	{
+		sort_reverse(pile_a, fd);
+		return (1);
+	}
+	else if (!check_if_sorted(pile_a, 1))
+	{
+		sort_pile_a(pile_a, pile_b, nb_elem, fd);
+		return (1);
+	}
+	return (0);
+}
 
 int				main(int argc, char **argv)
 {
 	t_pile		*pile_a;
 	t_pile		*pile_b;
 	int			fd;
+	int			fd2;
 
 	fd = open("inst.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
-	if (fd == -1)
-		fd = 1;
-	pile_a = NULL;
+	if (!(check_valid_input(argc, argv)))
+		return (0);
+	if (argv[1][0] == '-' && ft_strchr(argv[1], 'f'))
+		fd2 = open("instructions.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	else
+		fd2 = 1;
+	fd = (fd == -1 ? 1 : fd);
 	pile_b = NULL;
-	if (argc < 2)
+	if (!(pile_a = init_pile(ft_atoi(argv[--argc]))))
 		return (0);
-	if (!check_errors(argc, argv))
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	argc--;
-	if (!(pile_a = init_pile(ft_atoi(argv[argc]))))
-		return (0);
-	while (--argc > 0)
+	while (--argc > (!ft_strcmp(argv[1], "-f") ? 1 : 0))
 		add_to_top(pile_a, ft_atoi(argv[argc]));
-	if (check_if_sorted(pile_a, 1))
-		return (0);
-	if (pile_a->nb_elem <= 5)
-		sort_small_pile(pile_a, fd);
-	//	if (check_if_sorted(pile_a, 1))
-	//	write(1, "OK\n", 3);
-//	checker(pile_a);
-//	printf("-----\n");
-//printf("med = %d\n", median(pile_a, pile_a->nb_elem));
-//	quicksort_pile(pile_a, pile_b, pile_a->nb_elem, 1, fd);
-//pile_a = perso_sort(pile_a, fd);  // pas tout à fait bon
-else 
-sort_pile_a(pile_a, pile_b, pile_a->nb_elem, fd);
-//	if (check_if_sorted(pile_a, 1))
-//	write(1, "OK\n", 3);
-		//printf("pile A :\n");
-	//	print_pile(pile_a);
-		close(fd);
-//		printf("pile B :\n");
-//	print_pile(pile_b);
-//	printf("-----\n");
-//	if (check_if_sorted(perso_sort(pile_a)))
-//		write(1, "OK\n", 3);
-	//quicksort_list(pile_a->bottom, pile_a->top); // Tri A l'envers //
-	//print_pile(pile_a);
+	if (resolve(pile_a, pile_b, pile_a->nb_elem, fd) && fd != 1)
+		optimize_instructions(fd, fd2);
+	close(fd);
+	close(fd2);
 	return (1);
 }

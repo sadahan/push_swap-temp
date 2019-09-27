@@ -6,14 +6,13 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/24 18:37:18 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 15:20:58 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-t_pile				*exe_instructions(t_pile *pile_a, char *instruction)
+static t_pile		*exe_instructions(t_pile *pile_a, char *instruction)
 {
 	static t_pile	*pile_b = NULL;
 
@@ -38,7 +37,7 @@ t_pile				*exe_instructions(t_pile *pile_a, char *instruction)
 	return (pile_a);
 }
 
-int					check_false_instruction(char *instruction)
+static int			check_false_instruction(char *instruction)
 {
 	if (!ft_strcmp(instruction, "sa") || !ft_strcmp(instruction, "ss")
 		|| !ft_strcmp(instruction, "sb") || !ft_strcmp(instruction, "pa")
@@ -50,7 +49,7 @@ int					check_false_instruction(char *instruction)
 	return (0);
 }
 
-t_pile				*read_instructions(t_pile *pile_a, char *buff)
+static t_pile		*read_instructions(t_pile *pile_a, char *buff)
 {
 	int				i;
 	char			instruction[4];
@@ -66,6 +65,8 @@ t_pile				*read_instructions(t_pile *pile_a, char *buff)
 		if (!check_false_instruction(instruction))
 		{
 			write(2, "Error\n", 6);
+			del_pile(pile_a);
+			free(buff);
 			exit(EXIT_FAILURE);
 		}
 		if (!(pile_a = exe_instructions(pile_a, instruction)))
@@ -75,26 +76,25 @@ t_pile				*read_instructions(t_pile *pile_a, char *buff)
 	return (pile_a);
 }
 
-int					checker(t_pile *pile_a)
+int					checker(t_pile *pile_a, int f)
 {
-	int				ret;
-	char			buff[2];
 	int				fd;
 	char			*inst;
 
-	fd = open("inst.txt", O_RDONLY);
-	fd = (fd == -1) ? 0 : fd;
+	fd = open("instructions.txt", O_RDONLY);
+	fd = (fd == -1 || f == 0) ? 0 : fd;
 	if (!(inst = ft_strnew(0)))
-		return (-1);
-	while (!ft_strcmp(inst, "\0"))
-		while ((ret = read(fd, buff, 1)))
-		{
-			buff[ret] = '\0';
-			inst = ft_strnjoin_free(inst, buff, ret);
-		}
+		return (0);
+	while (fd && !ft_strcmp(inst, "\0"))
+		if (!(inst = read_file(inst, fd, pile_a)))
+			return (0);
+	if (!fd && !(inst = read_fd(inst, fd)))
+		return (0);
 	if (!(pile_a = read_instructions(pile_a, inst)))
 		return (0);
 	close(fd);
-	check_if_sorted(pile_a, 1) == 1 ? write(1, "OK\n", 3) : write(1, "KO\n", 3);
+	check_if_sorted(pile_a, 1) ? write(1, "OK\n", 3) : write(1, "KO\n", 3);
+	print_pile(pile_a);
+	del_pile(pile_a);
 	return (1);
 }

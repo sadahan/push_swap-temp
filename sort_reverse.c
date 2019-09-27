@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pile.c                                       :+:      :+:    :+:   */
+/*   sort_reverse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/24 16:59:52 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 15:18:30 by sadahan          ###   ########.fr       */
+/*   Created: 2019/09/26 14:44:49 by sadahan           #+#    #+#             */
+/*   Updated: 2019/09/26 15:15:33 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			print_pile(t_pile *pile)
+void		sort_reverse(t_pile *pile_a, int fd)
 {
-	t_element	*elem;
+	t_pile	*pile_b;
+	int		p;
+	int		nb_elem;
 
-	if (!pile)
+	p = 0;
+	pile_b = NULL;
+	if (!pile_a)
 		return ;
-	elem = pile->top;
-	while (elem != NULL)
+	nb_elem = pile_a->nb_elem - 1;
+	while (nb_elem--)
 	{
-		ft_putnbr(elem->nb);
-		write(1, " ", 1);
-		elem = elem->prev;
+		rrotate(pile_a, "rra", fd);
+		if (!(pile_b = push(pile_a, pile_b, "pb", fd)))
+			return ;
+		p++;
 	}
+	while (p--)
+		if (!(pile_a = push(pile_b, pile_a, "pa", fd)))
+			return ;
 }

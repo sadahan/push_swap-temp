@@ -6,11 +6,17 @@
 #    By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 11:05:50 by sadahan           #+#    #+#              #
-#    Updated: 2019/08/06 11:42:53 by sadahan          ###   ########.fr        #
+#    Updated: 2019/09/27 13:11:29 by sadahan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+HEADERS = ./includes/libft.h
+
+CC = gcc
+
+CFLAGS = -Wall -Werror -Wextra -I includes
 
 SRCS = ./ft_atoi.c ./ft_toupper.c ./ft_tolower.c ./ft_isalpha.c ./ft_isdigit.c \
 ./ft_isalnum.c ./ft_isprint.c ./ft_strlen.c ./ft_strcpy.c ./ft_strncpy.c \
@@ -27,13 +33,9 @@ SRCS = ./ft_atoi.c ./ft_toupper.c ./ft_tolower.c ./ft_isalpha.c ./ft_isdigit.c \
 ./ft_print_char_tab.c ./ft_sort_int_tab.c ./ft_sort_char_tab.c \
 ./ft_strarjoin.c ./ft_strnjoin_free.c ./get_next_line.c ./ft_swap.c
 
-HEADERS = ./includes/libft.h
-
 OBJS = $(SRCS:%.c=%.o)
 
-CC = gcc
-
-CFLAGS = -Wall -Werror -Wextra -I includes
+.PHONY: all, clean, fclean, re
 
 all : $(NAME)
 

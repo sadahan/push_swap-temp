@@ -6,11 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:03:46 by sadahan           #+#    #+#             */
-/*   Updated: 2019/01/08 13:48:17 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 13:11:52 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c)
+int		ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + 32);
