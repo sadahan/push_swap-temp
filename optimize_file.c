@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:18:17 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 14:43:12 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/27 16:41:10 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,37 +49,42 @@ static int	check_useless_instructions(char *inst1, char *inst2, int type)
 	return (0);
 }
 
+static char	**remove_useless_instructions(char **inst, int i, int j)
+{
+	if (check_useless_instructions(inst[i], inst[j], 1))
+		inst[i] = ft_strcpy(inst[i], "ss");
+	else if (check_useless_instructions(inst[i], inst[j], 2))
+		inst[i] = ft_strcpy(inst[i], "rr");
+	else if (check_useless_instructions(inst[i], inst[j], 3))
+		inst[i] = ft_strcpy(inst[i], "rrr");
+	if (!ft_strcmp(inst[i], "ss") || !ft_strcmp(inst[i], "rr")
+		|| !ft_strcmp(inst[i], "rrr"))
+		inst[j] = ft_strcpy(inst[j], "\0");
+	return (inst);
+}
+
 static char	**optimize_file(char **inst)
 {
 	int		i;
 	int		j;
 	int		change;
 
-	change = 0;
 	i = 0;
 	j = 1;
 	while (inst[i] && inst[j])
 	{
-		if (check_useless_instructions(inst[i], inst[j], 1))
-			inst[i] = ft_strcpy(inst[i], "ss");
-		else if (check_useless_instructions(inst[i], inst[j], 2))
-			inst[i] = ft_strcpy(inst[i], "rr");
-		else if (check_useless_instructions(inst[i], inst[j], 3))
-			inst[i] = ft_strcpy(inst[i], "rrr");
-		if (!ft_strcmp(inst[i], "ss") || !ft_strcmp(inst[i], "rr")
-			|| !ft_strcmp(inst[i], "rrr"))
-			inst[j] = ft_strcpy(inst[j], "\0");
-		while (check_useless_instructions(inst[i], inst[j], 4))
+		change = 0;
+		if (!(inst = remove_useless_instructions(inst, i, j)))
+			return (NULL);
+		while (check_useless_instructions(inst[i], inst[j], 4) && (change = 1))
 		{
 			inst[i] = ft_strcpy(inst[i], "\0");
 			while (!ft_strcmp(inst[i], "\0"))
 				i--;
 			inst[j] = ft_strcpy(inst[j], "\0");
 			j++;
-			change = 1;
 		}
-		!change ? i++ : change--;
-		while (inst[i] && !ft_strcmp(inst[i], "\0"))
+		while (inst[i] && (!ft_strcmp(inst[i], "\0") || !change--))
 			i++;
 		while (inst[j] && (j <= i || !ft_strcmp(inst[j], "\0")))
 			j++;
