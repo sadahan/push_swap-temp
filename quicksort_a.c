@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:49:33 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 18:36:55 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 10:23:13 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ void			sort_pile_a(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 	int			j;
 	static int	rot = 0;
 
-	j = 0;
 	if (!pile1)
 		return ;
-	if (!pile2)
+	if ((j = 0) && !pile2)
 		pile2 = NULL;
 	while (nb_elem > 3)
 	{
@@ -74,8 +73,7 @@ void			sort_pile_a(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 		nb_elem = sort_pile_b(pile2, pile1, pb[j], fd);
 		if (pb[j] > 6)
 		{
-			pb[j] = pb[j] - nb_elem;
-			j++;
+			pb[j++] -= nb_elem;
 			sort_pile_a(pile1, pile2, nb_elem, fd);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 16:48:32 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 13:15:52 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int					checker(t_pile *pile_a, int f)
 		return (0);
 	close(fd);
 	check_if_sorted(pile_a, 1) ? write(1, "OK\n", 3) : write(1, "KO\n", 3);
-	print_pile(pile_a);
 	del_pile(pile_a);
+	free(inst);
 	return (1);
 }

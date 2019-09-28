@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 15:22:41 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 13:05:35 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ int				del_top(t_pile *pile)
 	data = 0;
 	if (pile->nb_elem > 1)
 	{
-		temp = pile->top->prev;
+		temp = pile->top;
 		data = pile->top->nb;
-		temp->next = NULL;
-		free(pile->top);
-		pile->top = temp;
+		pile->top = pile->top->prev;
+		free(temp);
 		pile->nb_elem--;
 	}
 	else

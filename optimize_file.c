@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:18:17 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 18:17:53 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 12:55:48 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,5 @@ void		optimize_instructions(int fd, int fd2)
 		return ;
 	inst_tab = optimize_file(inst_tab);
 	write_new_file(inst_tab, fd2);
+	clean_tab(inst, inst_tab);
 }

@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:16:37 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 17:39:24 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 11:37:50 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int				median(t_pile *pile, int nb_elem)
 		elem = elem->prev;
 	med = elem->nb;
 	del_pile(temp);
-	elem = NULL;
 	return (med);
 }
 

@@ -6,7 +6,7 @@
 #    By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/02 15:09:23 by sadahan           #+#    #+#              #
-#    Updated: 2019/09/27 15:21:40 by sadahan          ###   ########.fr        #
+#    Updated: 2019/09/28 12:58:19 by sadahan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ HEADS = push_swap.h
 
 CC = gcc
 
-CFLAGS += -Wall -Werror -Wextra
+CFLAGS += -g -Wall -Werror -Wextra
 
 SRCS =	init_del_pile.c manage_pile.c push_swap_rotate.c check_errors.c \
-		print_pile.c read.c
+		print_pile.c read.c clean.c
 
 SRCS1 =	main_checker.c checker.c
 
@@ -38,7 +38,7 @@ OBJS2 += $(SRCS2:%.c=%.o)
 
 .PHONY: all, clean, fclean, re
 
-all: $(NAME1) $(NAME2)
+all: $(LIBFT) $(NAME1) $(NAME2)
 
 $(LIBFT): 
 			make -C libft all

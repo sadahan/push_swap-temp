@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:44:29 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 16:48:22 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 11:36:26 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				main(int argc, char **argv)
 		add_to_top(pile_a, ft_atoi(argv[argc]));
 	if (resolve(pile_a, pile_b, pile_a->nb_elem, fd) && fd != 1)
 		optimize_instructions(fd, fd2);
+	del_pile(pile_a);
 	close(fd);
 	close(fd2);
 	return (1);

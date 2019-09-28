@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/27 17:39:34 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 12:57:23 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void				sort_reverse(t_pile *pile_a, int fd);
 char				*read_fd(char *inst, int fd);
 char				*read_file(char *inst, int fd, t_pile *pile_a);
 t_pile				*copy_pile(t_pile *src, int nb_elem);
+void				clean_tab(char *s, char **tab);
 
 #endif
