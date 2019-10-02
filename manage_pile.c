@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 13:05:35 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 13:36:40 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int				check_if_sorted(t_pile *pile, int sens)
 	elem = NULL;
 	if (!pile)
 		return (1);
+	if (pile->nb_elem < 1)
+		return (0);
 	elem = pile->top;
 	while (elem->prev != NULL)
 	{

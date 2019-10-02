@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:07:45 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 13:15:52 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/02 16:22:44 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_pile		*exe_instructions(t_pile *pile_a, char *instruction)
 	if (pile_b && !ft_strcmp(instruction, "pa"))
 		if (!(pile_a = push(pile_b, pile_a, NULL, 0)))
 			return (NULL);
-	if (pile_a && !ft_strcmp(instruction, "pb"))
+	if (pile_a && !ft_strcmp(instruction, "pb") && pile_a->nb_elem > 1)
 		if (!(pile_b = push(pile_a, pile_b, NULL, 0)))
 			return (NULL);
 	if (!ft_strcmp(instruction, "ra") || !ft_strcmp(instruction, "rr"))
@@ -80,7 +80,9 @@ int					checker(t_pile *pile_a, int f)
 {
 	int				fd;
 	char			*inst;
+	int				nb;
 
+	nb = pile_a->nb_elem;
 	fd = open("instructions.txt", O_RDONLY);
 	fd = (fd == -1 || f == 0) ? 0 : fd;
 	if (!(inst = ft_strnew(0)))
@@ -93,8 +95,11 @@ int					checker(t_pile *pile_a, int f)
 	if (!(pile_a = read_instructions(pile_a, inst)))
 		return (0);
 	close(fd);
-	check_if_sorted(pile_a, 1) ? write(1, "OK\n", 3) : write(1, "KO\n", 3);
-	del_pile(pile_a);
 	free(inst);
+	if (check_if_sorted(pile_a, 1) && nb == pile_a->nb_elem)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	del_pile(pile_a);
 	return (1);
 }

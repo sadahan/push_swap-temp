@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:16:37 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 11:37:50 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/02 16:49:42 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,4 @@ int				check_sort_3(t_pile *pile, int nb_elem, int sens)
 		nb_elem--;
 	}
 	return (1);
-}
-
-void			sort_three(t_pile *pile, int nb_elem, int sens, int fd)
-{
-	if (!pile || nb_elem == 1 || check_sort_3(pile, nb_elem, sens) == 1)
-		return ;
-	if (nb_elem >= 2)
-	{
-		if (sens == 1 && pile->top->nb > pile->top->prev->nb)
-			swap(pile, "sa", fd);
-		if (sens == -1 && pile->top->nb < pile->top->prev->nb)
-			swap(pile, "sb", fd);
-	}
-	if (nb_elem == 3 && !check_sort_3(pile, nb_elem, sens))
-	{
-		rotate(pile, sens == 1 ? "ra" : "rb", fd);
-		swap(pile, sens == 1 ? "sa" : "sb", fd);
-		rrotate(pile, sens == 1 ? "rra" : "rrb", fd);
-		if (sens == 1 && pile->top->nb > pile->top->prev->nb)
-			swap(pile, "sa", fd);
-		if (sens == -1 && pile->top->nb < pile->top->prev->nb)
-			swap(pile, "sb", fd);
-	}
 }

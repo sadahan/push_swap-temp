@@ -6,7 +6,7 @@
 #    By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/02 15:09:23 by sadahan           #+#    #+#              #
-#    Updated: 2019/09/28 12:58:19 by sadahan          ###   ########.fr        #
+#    Updated: 2019/10/02 16:19:43 by sadahan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADS = push_swap.h
 
 CC = gcc
 
-CFLAGS += -g -Wall -Werror -Wextra
+CFLAGS += -flto -Wall -Werror -Wextra
 
 SRCS =	init_del_pile.c manage_pile.c push_swap_rotate.c check_errors.c \
 		print_pile.c read.c clean.c
@@ -26,7 +26,8 @@ SRCS =	init_del_pile.c manage_pile.c push_swap_rotate.c check_errors.c \
 SRCS1 =	main_checker.c checker.c
 
 SRCS2 =	main_push_swap.c quicksort_a.c quicksort_b.c small_lists.c \
-		quicksort_pile.c quicksort_list.c optimize_file.c sort_reverse.c
+		quicksort_pile.c quicksort_list.c optimize_file.c sort_reverse.c \
+		sort_three.c
 
 LIBFT = ./libft/libft.a
 

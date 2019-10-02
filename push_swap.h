@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 12:57:23 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/02 16:51:20 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "./libft/includes/libft.h"
+# include <stdio.h>
 
 typedef	struct		s_elem
 {
@@ -67,7 +67,9 @@ int					sort_pile_b(t_pile *pile1, t_pile *pile2, int nb_elem,
 void				sort_pile_a(t_pile *pile1, t_pile *pile2, int nb_elem,
 					int fd);
 int					check_sort_3(t_pile *pile, int nb_elem, int sens);
-void				sort_three(t_pile *pile, int nb_elem, int sens, int fd);
+void				sort_three_a(t_pile *pile, int nb_elem, int fd);
+int					sort_three_b(t_pile *pile1, t_pile *pile2, int nb_elem,
+					int fd);
 void				optimize_instructions(int fd, int fd2);
 void				sort_reverse(t_pile *pile_a, int fd);
 char				*read_fd(char *inst, int fd);

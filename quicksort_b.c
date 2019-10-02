@@ -6,25 +6,11 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:49:53 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/26 15:20:40 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/02 14:52:25 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int		sort_3_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
-{
-	int			i;
-
-	i = nb_elem;
-	if (!pile1 || !pile2)
-		return (0);
-	sort_three(pile1, i, -1, fd);
-	while (i-- > 0)
-		if (!(pile2 = push(pile1, pile2, "pa", fd)))
-			return (0);
-	return (1);
-}
 
 static int		sort_elem_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 {
@@ -63,7 +49,7 @@ int				sort_pile_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 	p = 0;
 	if (nb_elem <= 3)
 	{
-		if (!(sort_3_b(pile1, pile2, nb_elem, fd)))
+		if (!(sort_three_b(pile1, pile2, nb_elem, fd)))
 			return (0);
 		return (p);
 	}
@@ -71,8 +57,8 @@ int				sort_pile_b(t_pile *pile1, t_pile *pile2, int nb_elem, int fd)
 	nb_elem -= p;
 	if (nb_elem <= 3 && p <= 3)
 	{
-		sort_three(pile2, p, 1, fd);
-		if (!(sort_3_b(pile1, pile2, nb_elem, fd)))
+		sort_three_a(pile2, p, fd);
+		if (!(sort_three_b(pile1, pile2, nb_elem, fd)))
 			return (0);
 	}
 	return (p);

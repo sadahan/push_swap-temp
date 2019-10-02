@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:35:31 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/25 13:51:27 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/09/28 13:31:43 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_pile			*push(t_pile *pile_a, t_pile *pile_b, char *str, int fd)
 	int			data;
 
 	data = 0;
-	if (!pile_a)
+	if (!pile_a || pile_a->nb_elem < 1)
 		return (pile_b);
 	if (pile_a)
 	{
@@ -43,7 +43,7 @@ void			rotate(t_pile *pile, char *str, int fd)
 	int			data;
 
 	data = 0;
-	if (!pile || pile->nb_elem == 1)
+	if (!pile || pile->nb_elem <= 1)
 		return ;
 	data = del_top(pile);
 	add_to_bottom(pile, data);
@@ -59,7 +59,7 @@ void			rrotate(t_pile *pile, char *str, int fd)
 	int			data;
 
 	data = 0;
-	if (!pile || pile->nb_elem == 1)
+	if (!pile || pile->nb_elem <= 1)
 		return ;
 	data = del_bottom(pile);
 	add_to_top(pile, data);
@@ -77,7 +77,7 @@ void			swap(t_pile *pile, char *str, int fd)
 
 	data1 = 0;
 	data2 = 0;
-	if (!pile || pile->nb_elem == 1)
+	if (!pile || pile->nb_elem <= 1)
 		return ;
 	if (pile->nb_elem == 2)
 		rotate(pile, NULL, fd);
