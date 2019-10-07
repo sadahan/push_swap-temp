@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 16:38:41 by sadahan           #+#    #+#             */
-/*   Updated: 2019/10/02 16:51:20 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/03 15:45:11 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "./libft/includes/libft.h"
-# include <stdio.h>
 
 typedef	struct		s_elem
 {
@@ -43,7 +42,7 @@ typedef struct		s_inst
 }					t_instruct;
 
 int					check_if_sorted(t_pile *pile, int sens);
-int					checker(t_pile *pile_a, int f);
+int					checker(t_pile *pile_a, int pf);
 int					check_errors(int argc, char **argv);
 t_pile				*init_pile(int data);
 void				add_to_bottom(t_pile *pile, int data);
@@ -76,5 +75,6 @@ char				*read_fd(char *inst, int fd);
 char				*read_file(char *inst, int fd, t_pile *pile_a);
 t_pile				*copy_pile(t_pile *src, int nb_elem);
 void				clean_tab(char *s, char **tab);
+int					check_pf(char *av);
 
 #endif

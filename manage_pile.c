@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:53:34 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 13:36:40 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/03 15:07:38 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ int				del_top(t_pile *pile)
 		pile->nb_elem--;
 	}
 	else
+	{
+		pile->nb_elem = 0;
 		data = del_pile(pile);
+	}
 	return (data);
 }
 

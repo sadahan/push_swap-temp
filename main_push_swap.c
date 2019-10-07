@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:44:29 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 18:37:03 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/04 15:31:41 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		check_valid_input(int argc, char **argv)
 {
-	if (argc < 2 || (argv[1][0] == '-' && argv[1][1] != 'f'))
+	if (argc < 2 || (argv[1][0] == '-' && (ft_strcmp(argv[1], "-f"))))
 	{
 		write(2, "usage: ./push_swap [-f] $ARGS\n", 30);
 		return (0);
@@ -54,7 +54,7 @@ int				main(int argc, char **argv)
 	int			fd;
 	int			fd2;
 
-	fd = open("inst.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	fd = open("temp_inst.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (!(check_valid_input(argc, argv)))
 		return (0);
 	if (argv[1][0] == '-' && ft_strchr(argv[1], 'f'))
@@ -67,7 +67,8 @@ int				main(int argc, char **argv)
 		return (0);
 	while (--argc > (!ft_strcmp(argv[1], "-f") ? 1 : 0))
 		add_to_top(pile_a, ft_atoi(argv[argc]));
-	if (resolve(pile_a, pile_b, pile_a->nb_elem, fd) && fd != 1)
+		print_pile(pile_a);
+	if (pile_a->nb_elem > 1 && resolve(pile_a, pile_b, pile_a->nb_elem, fd) && fd != 1)
 		optimize_instructions(fd, fd2);
 	del_pile(pile_a);
 	close(fd);

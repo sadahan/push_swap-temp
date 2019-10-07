@@ -6,7 +6,7 @@
 /*   By: sadahan <sadahan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:18:17 by sadahan           #+#    #+#             */
-/*   Updated: 2019/09/28 12:55:48 by sadahan          ###   ########.fr       */
+/*   Updated: 2019/10/03 14:27:35 by sadahan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		optimize_instructions(int fd, int fd2)
 	char	buff[2];
 	char	**inst_tab;
 
-	if (!(fd = open("inst.txt", O_RDONLY)))
+	if (!(fd = open("temp_inst.txt", O_RDONLY)))
 		return ;
 	if (!(inst = ft_strnew(0)))
 		return ;
